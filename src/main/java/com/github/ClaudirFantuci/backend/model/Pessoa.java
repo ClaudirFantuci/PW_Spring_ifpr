@@ -1,8 +1,5 @@
 package com.github.ClaudirFantuci.backend.model;
 
-import org.springframework.boot.autoconfigure.domain.EntityScan;
-
-import javax.annotation.processing.Generated;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
