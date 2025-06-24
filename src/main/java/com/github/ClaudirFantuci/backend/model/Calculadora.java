@@ -1,7 +1,6 @@
 package com.github.ClaudirFantuci.backend.model;
 
 import jakarta.persistence.*;
-import jakarta.annotation.Generated;
 import lombok.Data;
 
 @Entity
