@@ -28,4 +28,4 @@ O backend está em fase inicial de desenvolvimento e será expandido ao longo do
 - **Java**: Linguagem de programação principal.
 - **Maven**: Gerenciador de dependências, conforme configurado no `pom.xml`.
 - **Spring Web**: Módulo para criação de endpoints REST.
-- ** Banco de dados **: MySQL.
+- **Banco de dados**: MySQL.
