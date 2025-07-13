@@ -27,7 +27,6 @@ public class Leilao {
     private String DescricaoDetalhada;
     private LocalDateTime dataHoraInicio;
     private LocalDateTime dataHoraFim;
-
     @Enumerated(EnumType.STRING)
     private StatusLeilao status;
     private String observacao;
