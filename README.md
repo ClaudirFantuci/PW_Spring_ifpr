@@ -26,6 +26,6 @@ O backend está em fase inicial de desenvolvimento e será expandido ao longo do
 
 - **Spring Boot**: Framework para desenvolvimento da API RESTful.
 - **Java**: Linguagem de programação principal.
-- **Maven**: Gerenciador de dependências, conforme configurado no `pom.xml`.
+- **Maven**: Gerenciador de dependências.
 - **Spring Web**: Módulo para criação de endpoints REST.
 - **Banco de dados**: MySQL.
