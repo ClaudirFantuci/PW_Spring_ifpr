@@ -1,18 +1,21 @@
 package com.github.ClaudirFantuci.backend.service;
+
 import com.github.ClaudirFantuci.backend.exception.NotFoundException;
 import com.github.ClaudirFantuci.backend.model.Pessoa;
 import java.util.List;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.github.ClaudirFantuci.backend.repository.PessoaRepository;
 
 @Service
-public class PessoaService {
+public class PessoaService implements UserDetailsService {
     @Autowired
     private PessoaRepository pessoaRepository;
     @Autowired
@@ -43,5 +46,10 @@ public class PessoaService {
 
     public List<Pessoa> buscarTodos() {
         return pessoaRepository.findAll();
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        return pessoaRepository.findByEmail(username).orElseThrow(()-> new UsernameNotFoundException("pessoa não encontrada"));
     }
 }
