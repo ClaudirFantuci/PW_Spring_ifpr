@@ -6,7 +6,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
-import com.github.ClaudirFantuci.backend.model.PessoaRequestDTO;
+import com.github.ClaudirFantuci.backend.dto.PessoaRequestDTO;
 import com.github.ClaudirFantuci.backend.security.JwtService;
 
 @Service
@@ -20,7 +20,7 @@ public class AutenticacaoService {
 
     public String autenticar(PessoaRequestDTO pessoa) {
         Authentication authentication = authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(pessoa.getEmail(), pessoa.getPassword()));
+                new UsernamePasswordAuthenticationToken(pessoa.getEmail(), pessoa.getSenha()));
 
         return jwtService.generateToken(authentication.getName());
     }
