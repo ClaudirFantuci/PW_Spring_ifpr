@@ -48,6 +48,8 @@ public class ConfiguracaoSeguranca {
                         .requestMatchers("/autenticacao/**").permitAll()
                         .requestMatchers("/categoria/**").permitAll()
                         .requestMatchers("/leilao/public").permitAll()
+                        .requestMatchers("/pessoa").permitAll()
+                        .requestMatchers("/perfil").permitAll()
                         /* .requestMatchers("/api/pessoa/**").hasRole("ADMIN") */
                         .anyRequest().authenticated())
                 .sessionManagement(session -> session
