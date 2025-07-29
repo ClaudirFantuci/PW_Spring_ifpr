@@ -2,19 +2,15 @@ package com.github.ClaudirFantuci.backend.service;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Service;
 
 import com.github.ClaudirFantuci.backend.model.Perfil;
-import com.github.ClaudirFantuci.backend.repository.PerfilRepository;
 import com.github.ClaudirFantuci.backend.repository.PerfilRepository;
 
 @Service
 public class PerfilService {
     @Autowired
     private PerfilRepository perfilRepository;
-    @Autowired
-    private MessageSource messageSource;
 
     public Perfil inserir(Perfil perfil) {
         return perfilRepository.save(perfil);

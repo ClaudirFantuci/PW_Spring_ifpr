@@ -20,7 +20,7 @@ import jakarta.validation.Valid;
 @RestController
 @RequestMapping("/perfil")
 public class PerfilController {
- 
+
     @Autowired
     private PerfilService perfilService;
 
