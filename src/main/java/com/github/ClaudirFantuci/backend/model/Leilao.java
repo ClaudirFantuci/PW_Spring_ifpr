@@ -20,7 +20,7 @@ import java.time.LocalDateTime;
 @Table(name = "leilao")
 public class Leilao {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String titulo;
     private String Descricao;

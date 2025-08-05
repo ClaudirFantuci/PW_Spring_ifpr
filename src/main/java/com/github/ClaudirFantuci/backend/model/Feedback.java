@@ -18,7 +18,7 @@ import lombok.RequiredArgsConstructor;
 @Table(name = "Feedback")
 public class Feedback {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String comentario;
     private Integer nota;
