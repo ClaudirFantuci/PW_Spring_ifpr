@@ -3,8 +3,8 @@ package com.github.ClaudirFantuci.backend.dto;
 import lombok.Data;
 
 @Data
-public class PessoaRequestDTO {
+public class PessoaAutenticacaoDTO {
+    private String nome;
     private String email;
-    private String senha;
-
+    private String Token;
 }
