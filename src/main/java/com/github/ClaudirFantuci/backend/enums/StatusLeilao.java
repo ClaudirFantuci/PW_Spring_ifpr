@@ -1,4 +1,4 @@
-package com.github.ClaudirFantuci.backend.model;
+package com.github.ClaudirFantuci.backend.enums;
 
 public enum StatusLeilao {
     ABERTO,

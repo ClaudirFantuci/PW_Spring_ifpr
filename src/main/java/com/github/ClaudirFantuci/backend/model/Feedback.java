@@ -2,11 +2,8 @@ package com.github.ClaudirFantuci.backend.model;
 
 import java.time.LocalDateTime;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
@@ -15,13 +12,20 @@ import lombok.RequiredArgsConstructor;
 @Data
 @AllArgsConstructor
 @RequiredArgsConstructor
-@Table(name = "Feedback")
+@Table(name = "feedback")
 public class Feedback {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String comentario;
+
     private Integer nota;
+
     private LocalDateTime dataHora;
 
+    @ManyToOne
+    @JoinColumn(name = "id_pessoa_destinatario")
+    @NotNull(message = "{validation.destinatario.notnull}")
+    private Pessoa destinatario;
 }

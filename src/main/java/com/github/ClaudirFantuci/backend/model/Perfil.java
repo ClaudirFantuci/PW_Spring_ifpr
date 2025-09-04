@@ -1,11 +1,8 @@
 package com.github.ClaudirFantuci.backend.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import jakarta.validation.constraints.NotBlank;
+import com.github.ClaudirFantuci.backend.enums.TipoPerfil;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 @Entity
@@ -15,6 +12,8 @@ public class Perfil {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NotBlank(message = "{validation.name.notblank}")
-    private String nome;
+
+    @Enumerated(EnumType.STRING)
+    @NotNull(message = "{validation.tipo.notnull}")
+    private TipoPerfil tipo;
 }

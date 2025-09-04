@@ -1,6 +1,7 @@
 package com.github.ClaudirFantuci.backend.model;
 
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -14,6 +15,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.Setter;
@@ -21,22 +23,51 @@ import lombok.Setter;
 @Entity
 @Data
 @Table(name = "pessoa")
-@JsonIgnoreProperties({"authorities"})
+@JsonIgnoreProperties({ "authorities" })
 public class Pessoa implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @NotBlank(message = "{validation.name.notblank}")
     private String nome;
+
     @NotBlank(message = "{validation.email.notblank}")
     @Email(message = "{validation.email.notvalid}")
     private String email;
+
     @JsonIgnore
     private String senha;
+
+    private String codigoValidacao;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date validadeCodigoValidacao;
+
+    @NotNull
+    private Boolean ativo;
+
+    @Lob
+    private byte[] fotoPerfil;
 
     @OneToMany(mappedBy = "pessoa", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     @Setter(value = AccessLevel.NONE)
     private List<PessoaPerfil> pessoaPerfil;
+
+    @OneToMany(mappedBy = "criador", cascade = CascadeType.ALL)
+    private List<Categoria> categorias;
+
+    @OneToMany(mappedBy = "publicador", cascade = CascadeType.ALL)
+    private List<Leilao> leiloes;
+
+    @OneToMany(mappedBy = "pessoa", cascade = CascadeType.ALL)
+    private List<Lance> lances;
+
+    @OneToMany(mappedBy = "autor", cascade = CascadeType.ALL)
+    private List<Feedback> feedbacks;
+
+    @OneToMany(mappedBy = "destinatario", cascade = CascadeType.ALL)
+    private List<Feedback> feedbacksRecebidos;
 
     public void setPessoaPerfil(List<PessoaPerfil> pessoaPerfil) {
         for (PessoaPerfil p : pessoaPerfil) {
@@ -47,12 +78,14 @@ public class Pessoa implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return pessoaPerfil.stream().map(user -> new SimpleGrantedAuthority(user.getPerfil().getNome())).collect(Collectors.toList());
+        return pessoaPerfil.stream()
+                .map(user -> new SimpleGrantedAuthority(user.getPerfil().getTipo().name()))
+                .collect(Collectors.toList());
     }
 
     @Override
     public String getPassword() {
-       return senha;
+        return senha;
     }
 
     @Override
